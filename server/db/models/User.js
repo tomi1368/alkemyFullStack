@@ -1,6 +1,9 @@
 import {model,Schema} from "mongoose"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import Wallet from "./Wallet"
+
+
 const UserSchema = new Schema({
     username: {
         type: String,
@@ -23,13 +26,10 @@ const UserSchema = new Schema({
             "Please provide a valid email"
           ]
       },
-      balance:{
-          type:Number,
-          default:0
-      },
-      transactions:[
-          
-      ]
+      wallet:{
+          type:Schema.Types.ObjectId,
+          ref:"Wallet"
+      }
 },{versionKey:false})
 
 UserSchema.pre("save", async function(next){
@@ -48,15 +48,26 @@ UserSchema.pre("save", async function(next){
   }
   )
 
+  UserSchema.pre("init",async function(next){
+    try{
+      let newWallet = new Wallet({
+        walletOwner:this._id
+      })
+      await newWallet.save()
+    }catch(err){
+      next(err)
+    }
+  })
 
 
 UserSchema.methods.signToken = function(){
-    return jwt.sign({id:this._id},process.env.SECRET_TOKEN,{expiresIn:process.env.TOKEN_EXPIRES})
+    return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn:process.env.TOKEN_EXPIRES})
 }
 
 UserSchema.methods.matchPassword = function(password){
     return bcrypt.compare(password,this.password)
 }
+
 
 
 export default model("User",UserSchema)
