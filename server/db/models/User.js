@@ -1,8 +1,9 @@
-import {model,Schema} from "mongoose"
+import mongoose from "mongoose"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
-import Wallet from "./Wallet"
+import Wallet from "./Wallet.js"
 
+const {Schema,model} = mongoose
 
 const UserSchema = new Schema({
     username: {
@@ -32,6 +33,21 @@ const UserSchema = new Schema({
       }
 },{versionKey:false})
 
+
+UserSchema.pre("save", async function(next){
+  try{
+    let newWallet = new Wallet({
+      walletOwner:this._id
+    })
+    let createdWallet = await newWallet.save()
+    this.wallet = createdWallet._id
+    return next()
+  }catch(err){
+    return next(err)
+  }
+} )
+
+
 UserSchema.pre("save", async function(next){
     const user = this
     const SALT = 10
@@ -48,16 +64,7 @@ UserSchema.pre("save", async function(next){
   }
   )
 
-  UserSchema.pre("init",async function(next){
-    try{
-      let newWallet = new Wallet({
-        walletOwner:this._id
-      })
-      await newWallet.save()
-    }catch(err){
-      next(err)
-    }
-  })
+
 
 
 UserSchema.methods.signToken = function(){
@@ -70,4 +77,6 @@ UserSchema.methods.matchPassword = function(password){
 
 
 
-export default model("User",UserSchema)
+const User = model("User",UserSchema)
+
+export default User

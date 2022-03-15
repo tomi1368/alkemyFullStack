@@ -5,7 +5,7 @@ import methodOverride from "method-override"
 import connectDB from "./db/config/db.js"
 //Contr
 import userRouter from "./routers/userRouter.js"
-
+import TransactionRouter from "./routers/transactionRouter.js"
 
 //Enviroment
 dotenv.config()
@@ -36,7 +36,7 @@ app.get("/healthy",(req,res)=>{
 })
 
 app.use("/api/user",userRouter)
-
+app.use("/api/transaction",TransactionRouter)
 
 
 const server = app.listen(PORT,(req,res)=>{

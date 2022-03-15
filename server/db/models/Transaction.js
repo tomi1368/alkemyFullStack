@@ -1,4 +1,7 @@
-import {model,Schema} from "mongoose";
+import mongoose from "mongoose";
+
+
+const {model,Schema} = mongoose
 
 const TransactionSchema = new Schema({
     concept:{
@@ -17,7 +20,7 @@ const TransactionSchema = new Schema({
     category:{
         type:String
     }
-},{timestamps:true})
+},{timestamps:true,versionKey:false})
 
 const Transaction = model("Transaction",TransactionSchema)
 

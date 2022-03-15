@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
-import User from "../db/models/User"
-import errorResponse from "../helpers/errorResponse"
+import User from "../db/models/User.js"
+import errorResponse from "../helpers/errorResponse.js"
 
 const authToken = async (req,res,next)=>{
     let token;

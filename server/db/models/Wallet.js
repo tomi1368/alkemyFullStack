@@ -1,5 +1,6 @@
-import {model,Schema} from "mongoose"
+import mongoose from "mongoose"
 
+const {Schema,model} = mongoose
 
 const WalletSchema = new Schema({
     balance:{

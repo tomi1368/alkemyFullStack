@@ -1,12 +1,19 @@
-import User from "../db/models/User"
+import User from "../db/models/User.js"
 //import Wallet from "../db/models/Wallet"
-import errorResponse from "../helpers/errorResponse"
-import { sendAuth } from "../helpers/signToken"
+import errorResponse from "../helpers/errorResponse.js"
+import { sendAuth } from "../helpers/signToken.js"
 
 export const login = async (req,res)=>{
     let {username,password} = req.body
     try{
-        const userFind = User.findOne({username}).select("+password").populate("wallet")
+        const userFind = await User.findOne({username}).select("+password").populate({
+            path:"wallet",
+            populate:{
+                path:"transactions",
+                model:"Transaction"
+            }
+        })
+        console.log(userFind)
         if(!userFind) return errorResponse("Not found user",404,res)
         const match = await userFind.matchPassword(password)
         if(!match) return errorResponse("Password dont match",404,res)
@@ -24,10 +31,10 @@ export const register = async (req,res)=>{
     try {
         const newUser = new User(user)
         const userCreated = await newUser.save()
-        /* const newWallet = new Wallet({
+       /*  const newWallet = new Wallet({
             walletOwner:userCreated._id
         })
-        const walletCreated = await newUser.save() */
+        await newWallet.save() */
         sendAuth(userCreated,200,res)
     } catch (err) {
         errorResponse(err.message,404,res)
