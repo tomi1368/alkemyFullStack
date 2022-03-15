@@ -15,7 +15,7 @@ export const createTransaction = async (req,res)=>{
         let createdTransaction = await newTransaction.save()
         await Wallet.findByIdAndUpdate( wallet._id,
             {$push: {"transactions": createdTransaction._id},
-            $inc:{quantity:type == "ingress" ? 1 : -1,"balance":amount}
+            $inc:{"balance":type == "ingress" ? amount : -amount}
             },
             {new: true})
         res.status(200).json(createdTransaction)
