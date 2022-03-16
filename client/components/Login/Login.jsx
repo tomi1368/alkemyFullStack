@@ -4,12 +4,12 @@ import { Formik, Form, Field } from "formik";
 import "./Login.scss";
 import { validationForm } from "./loginHelper/loginRequest";
 import {useNavigate} from "react-router-dom"
-
+import { useDispatch,useSelector} from "react-redux";
 
 
 const Login = () => {
  const navigate = useNavigate()
-
+ const dispatch = useDispatch()
   return (
     <div className="background-login">
     <div className="login-wrapper">
@@ -18,7 +18,7 @@ const Login = () => {
         <Formik
           initialValues={initialValue}
           validationSchema={Schema}
-          onSubmit={(v) => validationForm(v,navigate)}
+          onSubmit={(v) => validationForm(v,dispatch,navigate)}
         >
           {({ errors }) => {
             return (

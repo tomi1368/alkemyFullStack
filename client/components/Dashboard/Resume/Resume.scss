@@ -1,0 +1,45 @@
+.wallet-wrapper{
+    display: grid;
+    grid-template-columns:  2fr 1fr;
+    gap: 10px;
+    background-color: #fcfcfc;
+    .wallet{
+        padding: 20px;
+        &-current{
+            padding: 20px;
+            background: linear-gradient(to Top, rgba(179,123,255,1) 1%, rgba(116,153,255,1) 100%, rgba(0,212,255,1) 100%);
+            color: #fff;
+            border-radius: 20px;
+            max-width: 400px;
+            h2{
+                margin: 0 0 10px 0 ;
+            }
+        }
+        &-transactions{
+            margin: 40px 0 0 0 ;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+    }
+    .profile{
+        display: flex;
+        padding: 20px;
+        margin: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background-color: #ffffff;
+        border-radius: 25px;
+        align-self: start;
+        &-title{
+            font-size: 20px;
+        }
+        &-image{
+            width: 120px;
+            height: 120px;
+            img{
+                object-fit: contain;
+            }
+        }
+    }
+}

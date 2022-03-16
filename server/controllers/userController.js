@@ -5,6 +5,7 @@ import { sendAuth } from "../helpers/signToken.js"
 
 export const login = async (req,res)=>{
     let {email,password} = req.body
+    console.log(req.body)
     try{
         const userFind = await User.findOne({email}).select("+password").populate({
             path:"wallet",

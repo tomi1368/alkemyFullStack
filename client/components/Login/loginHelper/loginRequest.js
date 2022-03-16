@@ -1,11 +1,8 @@
-import axios from "axios"
+import { fetchUser } from "../../../redux/reducers/userSlice"
 
-
-export const validationForm = async (value,navigate)=>{
-    try {
-        let loginUser = await axios.post("http://localhost:4500/api/user/login",value)
-        navigate("/dashboard")
-    } catch (error) {
-        console.log(error.message)
-    }
+export const validationForm = (value,dispatch,navigate)=>{
+    dispatch(fetchUser(value))
+    .unwrap()
+    .then(res=> navigate("/dashboard") )
+    .catch(err=>console.log(err))
 }
