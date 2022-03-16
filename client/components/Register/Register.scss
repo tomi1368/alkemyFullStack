@@ -1,0 +1,60 @@
+.background-register{
+    background-image: url("https://pbs.twimg.com/ext_tw_video_thumb/1474053034468646912/pu/img/HLJxc3lzu2tNDVdv.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    .register-wrapper{
+        display: grid;
+        max-width: 1200px;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        margin: 0 auto;
+        .register{
+            height: 600px;
+            padding: 50px;
+            background-color: #fbfdff;
+            h3{
+                font-size: 1.5rem;
+                margin: 0 0 4rem 0;
+                text-align: center;
+            }
+            &-form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                &__field{
+                    width: 300px;
+                    padding: 10px 20px;
+                    margin: 20px 0  0;
+                }
+                button[type="submit"] {
+                    padding: 15px 40px;
+                    border-radius: 20px;
+                    border: none;
+                    background-color: #b300db;
+                    color: #fbfdff;
+                    cursor: pointer;
+                  }
+            }
+        }
+        .register-image{
+            height: 600px;
+        }
+        .register-tologin{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 40px 0 0 0;
+            h4{
+                font-size: 15px;
+            }
+            &__btn{
+                border-bottom: 1px #b300db solid;                
+            }
+        }
+    }
+}

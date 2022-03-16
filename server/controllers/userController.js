@@ -4,16 +4,15 @@ import errorResponse from "../helpers/errorResponse.js"
 import { sendAuth } from "../helpers/signToken.js"
 
 export const login = async (req,res)=>{
-    let {username,password} = req.body
+    let {email,password} = req.body
     try{
-        const userFind = await User.findOne({username}).select("+password").populate({
+        const userFind = await User.findOne({email}).select("+password").populate({
             path:"wallet",
             populate:{
                 path:"transactions",
                 model:"Transaction"
             }
         })
-        console.log(userFind)
         if(!userFind) return errorResponse("Not found user",404,res)
         const match = await userFind.matchPassword(password)
         if(!match) return errorResponse("Password dont match",404,res)
