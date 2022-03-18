@@ -6,6 +6,7 @@ import Login from "../components/Login/Login"
 import Register from "../components/Register/Register"
 import Transactions from "../components/Dashboard/Transactions/Transactions"
 import "./App.scss"
+import CreateTransaction from "../components/Dashboard/CreateTransaction/CreateTransaction"
 function App() {
   return (
     <Routes>
@@ -14,7 +15,8 @@ function App() {
       <Route path="/register" element={<Register/>}/>
       <Route  path="dashboard" element={<Dashboard/>}> 
         <Route path="" element={<Resume></Resume>}></Route>
-        <Route path="newTransaction" element={<Transactions></Transactions>}></Route>
+        <Route path="newTransaction" element={<CreateTransaction/>}></Route>
+        <Route path="transactions" element={<Transactions/>} />
       </Route>
     </Routes>
   )

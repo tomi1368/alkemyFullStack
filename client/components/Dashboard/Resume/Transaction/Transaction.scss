@@ -1,0 +1,23 @@
+.transaction{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    &-concept{
+        text-align: center;
+        word-break: break-word;
+        max-width: 100px;
+    }
+    &-amount{
+        font-weight: 800;
+        &.gain{
+            
+            color: rgb(13, 174, 13);
+        }
+        &.lost{
+            color: rgb(245, 9, 9);
+        }
+    }
+}

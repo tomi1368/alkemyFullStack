@@ -3,18 +3,18 @@ import "./Resume.scss"
 import {useSelector} from "react-redux"
 import Transaction from "./Transaction/Transaction";
 const Resume = () => {
-  const transactions = useSelector(state=>state.currentUser.user.wallet.transactions)
+  const transactions = useSelector(state=>state.currentUser.user)
   return (
     <div className="wallet-wrapper">
       <div className="wallet">
         <div className="wallet-current">
           <h2>Current Balance</h2>
-          <h3>$78.0000</h3>
+          <h3>{`$ ${transactions.wallet.balance}`}</h3>
         </div>
         <div className="wallet-transactions">
           <h3>Last Transactions</h3>
           <div className="wallet-transactions__list">
-            {transactions.map(el=><Transaction key={el._id}/> )}
+            {transactions.wallet.transactions.map(el=><Transaction concept={el.concept} amount={el.amount} type={el.type} category={el.category} createdAt={el.createdAt}  key={el._id}/> )}
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@ const Resume = () => {
         <div className="profile-image">
           <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" alt="" />
         </div>
-        <h3 className="profile-title">Username</h3>
+        <h3 className="profile-title">{transactions.username}</h3>
       </div>
     </div>
   );

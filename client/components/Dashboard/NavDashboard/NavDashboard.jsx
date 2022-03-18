@@ -14,6 +14,10 @@ const NavDashBoard = () => {
         <span style={{fontSize:"20px"}}>&#128210;</span>
         <span>Make Transaction</span> 
         </NavLink>
+        <NavLink to={"/dashboard/transactions"} className={({isActive})=> `navboard-links__link ${!isActive ? "" : "active"}` }>
+        <span style={{fontSize:"20px"}}>&#128203;</span>
+        <span>Transactions</span> 
+        </NavLink>
       </ul>
     </div>
   )

@@ -1,0 +1,29 @@
+.maketransaction {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcfcfc;
+  &-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &__fieldcont{
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      &__field{
+          padding: 10px 20px;
+      }
+    }
+    button[type="submit"]{
+        padding: 10px 15px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(to Top, rgba(179,123,255,1) 1%, rgba(116,153,255,1) 100%, rgba(0,212,255,1) 100%);
+        color: #ffffff;
+        font-weight: 600;
+    }
+  }
+}

@@ -19,6 +19,29 @@
             margin: 40px 0 0 0 ;
             padding: 20px;
             background-color: #ffffff;
+            border-radius: 25px;
+            & > h3{
+                padding: 0 0 10px 0;
+                margin: 0 0 10px 0;
+                border-bottom: 1px solid black ;
+            }
+            &__list{
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                overflow-y: scroll;
+                &::-webkit-scrollbar{
+                    width: 1em;
+                }
+                &::-webkit-scrollbar-thumb{
+                    background-color: #ffffff;
+                    border-radius: 100vw;
+                }
+                &::-webkit-scrollbar-track{
+                    background: linear-gradient(to Top, rgba(179,123,255,1) 1%, rgba(116,153,255,1) 100%, rgba(0,212,255,1) 100%);
+                }
+            }
         }
     }
     .profile{
