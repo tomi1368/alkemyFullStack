@@ -16,6 +16,17 @@
           padding: 10px 20px;
       }
     }
+    &__btns{
+      display: flex;
+      gap: 20px;
+      &__delete{
+        background-color: #F47174;
+        border-radius: 50%;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    }
     button[type="submit"]{
         padding: 10px 15px;
         border-radius: 10px;

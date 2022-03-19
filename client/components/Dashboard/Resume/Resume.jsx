@@ -14,7 +14,7 @@ const Resume = () => {
         <div className="wallet-transactions">
           <h3>Last Transactions</h3>
           <div className="wallet-transactions__list">
-            {transactions.wallet.transactions.map(el=><Transaction concept={el.concept} amount={el.amount} type={el.type} category={el.category} createdAt={el.createdAt}  key={el._id}/> )}
+            {transactions.wallet.transactions.map(el=><Transaction id={el._id} concept={el.concept} amount={el.amount} type={el.type} category={el.category} createdAt={el.createdAt}  key={el._id}/> )}
           </div>
         </div>
       </div>
