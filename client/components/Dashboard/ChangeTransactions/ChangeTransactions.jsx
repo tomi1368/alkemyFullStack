@@ -18,6 +18,8 @@ const ChangeTransactions = () => {
     <>
     {
         selectedTransaction && (
+          <div> 
+          <h2 style={{textAlign:"center",paddingTop:"10px"}}>Change Transaction</h2>
           <div className="maketransaction">
           <Formik
             initialValues={initialValue(selectedTransaction)}
@@ -73,6 +75,7 @@ const ChangeTransactions = () => {
               );
             }}
           </Formik>
+        </div>
         </div>
         )
     }

@@ -5,6 +5,9 @@
     padding: 5px;
     align-items: center;
     text-align: center;
+    @media screen and (max-width:500px) {
+        font-size:12px;
+    }
     &-concept{
         text-align: center;
         word-break: break-word;

@@ -12,14 +12,20 @@
         grid-template-columns: 1fr 1fr;
         align-items: center;
         margin: 0 auto;
+        @media screen and (max-width:886px) {
+            grid-template-columns: 1fr;
+        }
         .register{
             height: 600px;
             padding: 50px;
             background-color: #fbfdff;
             h3{
                 font-size: 1.5rem;
-                margin: 0 0 4rem 0;
+                margin: 0 0 2rem 0;
                 text-align: center;
+                @media screen and (max-width:800px) {
+                    margin: 0 0 0 0;
+                }
             }
             &-form{
                 display: flex;
@@ -30,6 +36,9 @@
                     width: 300px;
                     padding: 10px 20px;
                     margin: 20px 0  0;
+                    @media screen and (max-width:413px) {
+                        width: 100%;
+                    }
                 }
                 button[type="submit"] {
                     padding: 15px 40px;
@@ -43,12 +52,19 @@
         }
         .register-image{
             height: 600px;
+            @media screen and (max-width:886px) {
+                display: none;
+            }
         }
         .register-tologin{
             display: flex;
             gap: 10px;
             align-items: center;
             margin: 40px 0 0 0;
+            @media screen and (max-width:341px) {
+            margin: 10px 0 0 0;
+                
+            }
             h4{
                 font-size: 15px;
             }

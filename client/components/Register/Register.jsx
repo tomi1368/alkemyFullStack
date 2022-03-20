@@ -33,7 +33,7 @@ const Register = () => {
           </Formik>          
         <div className='register-tologin'>
                 <h4>Have you an account?</h4>
-                <Link to="/login" className='register-tologin__btn' > Create your Amazon account</Link>
+                <Link to="/login" className='register-tologin__btn' > Sign-in with your account</Link>
             </div>
         </div>
         <div className="register-image">

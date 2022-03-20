@@ -13,6 +13,9 @@ align-items: center;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
+    @media screen and (max-width:858px) {
+      grid-template-columns: 1fr
+    }
     .login {
       display: flex;
       flex-direction: column;
@@ -20,6 +23,7 @@ align-items: center;
       gap: 20px;
       height: 600px;
       padding: 50px;
+
       h3 {
         text-align: center;
         font-size: 1.5rem;
@@ -36,6 +40,9 @@ align-items: center;
           margin: 0 0 30px 0;
           border: none;
           border-bottom: 1px solid #000000;
+          @media screen and (max-width:405px  ) {
+            width: 100%;
+          }
         }
         button[type="submit"] {
           padding: 15px 40px;
@@ -48,6 +55,9 @@ align-items: center;
       }
       &-img {
         height: 600px;
+        @media screen and (max-width:858px) {
+          display: none;
+        }
       }
     }
   }

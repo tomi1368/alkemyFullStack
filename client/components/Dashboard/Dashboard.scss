@@ -3,4 +3,11 @@
     padding: 20px;
     display: grid;
     grid-template-columns: 300px 1fr;
+    @media only screen and (max-width:1034px){
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 0;
+        width: 100%;
+        display: unset;
+    }
 }
