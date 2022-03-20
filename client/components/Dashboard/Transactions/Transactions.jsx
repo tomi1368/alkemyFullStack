@@ -7,10 +7,10 @@ const Transactions = () => {
   const [sort,setSort] = useState("newest")
   const [sortedTransactions,setSortedTransactions] = useState([])
   useEffect(()=>{
-    setSortedTransactions(state=>[...state].sort((a,b)=> sort == "newest" ? (new Date(b.createdAt) - new Date(a.createdAt)) : (new Date(a.createdAt) - new Date(b.createdAt))) )
+    setSortedTransactions(state=>[...state].sort((a,b)=> sort == "newest" ? (new Date(b.date) - new Date(a.date)) : (new Date(a.date) - new Date(b.date))) )
   },[sort])
   useEffect(()=>{
-    setSortedTransactions([...transactions.wallet.transactions].sort((a,b)=> sort == "newest" ? (new Date(b.createdAt) - new Date(a.createdAt)) : (new Date(a.createdAt) - new Date(b.createdAt))))
+    setSortedTransactions([...transactions.wallet.transactions].sort((a,b)=> sort == "newest" ? (new Date(b.date) - new Date(a.date)) : (new Date(a.date) - new Date(b.date))))
   },[])
   return (
     <div className='list-transactions'>
@@ -22,11 +22,11 @@ const Transactions = () => {
           <option value="oldest">Oldest</option>
       </select>
       </div>
-      {sortedTransactions.map(elem=> elem.type == "ingress" && <Transaction id={elem._id} createdAt={elem.createdAt} concept={elem.concept} amount={elem.amount} type={elem.type} category={elem.category} key={elem._id} />)}
+      {sortedTransactions.map(elem=> elem.type == "ingress" && <Transaction id={elem._id} createdAt={elem.date} concept={elem.concept} amount={elem.amount} type={elem.type} category={elem.category} key={elem._id} />)}
       </div>
       <div className='list-transactions__type'>
       <h2>Egress Transactions</h2>
-      {sortedTransactions.map(elem=> elem.type == "egress" && <Transaction id={elem._id} createdAt={elem.createdAt}  concept={elem.concept} amount={elem.amount} type={elem.type} category={elem.category} key={elem._id} />)}
+      {sortedTransactions.map(elem=> elem.type == "egress" && <Transaction id={elem._id} createdAt={elem.date}  concept={elem.concept} amount={elem.amount} type={elem.type} category={elem.category} key={elem._id} />)}
       </div>
     </div>
   )

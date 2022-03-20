@@ -4,6 +4,7 @@ import {useSelector} from "react-redux"
 import Transaction from "./Transaction/Transaction";
 const Resume = () => {
   const transactions = useSelector(state=>state.currentUser.user)
+  const firstTen = [...transactions.wallet.transactions].sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)).slice(0,10)
   return (
     <div className="wallet-wrapper">
       <div className="wallet">
@@ -14,7 +15,7 @@ const Resume = () => {
         <div className="wallet-transactions">
           <h3>Last Transactions</h3>
           <div className="wallet-transactions__list">
-            {transactions.wallet.transactions.map(el=><Transaction id={el._id} concept={el.concept} amount={el.amount} type={el.type} category={el.category} createdAt={el.createdAt}  key={el._id}/> )}
+            {firstTen.map(el=><Transaction id={el._id} concept={el.concept}  amount={el.amount} type={el.type} category={el.category} createdAt={el.date}  key={el._id}/> )}
           </div>
         </div>
       </div>

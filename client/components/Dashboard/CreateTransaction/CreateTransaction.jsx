@@ -8,6 +8,7 @@ import {
 import {useDispatch,useSelector} from "react-redux"
 import {createTransactionRequest} from "./createTransactionConfig/createTransactionRequest"
 import "./CreateTransaction.scss";
+import DataPickerComp from "./DataPicker/DataPicker";
 const CreateTransaction = () => {
   const dispatch = useDispatch()
   const user = useSelector(state=> state.currentUser)
@@ -18,7 +19,7 @@ const CreateTransaction = () => {
         validationSchema={SchemaValidation}
         onSubmit={(v)=>createTransactionRequest(dispatch,v,user)}
       >
-        {({ errors }) => {
+        {({ errors,setFieldValue,values }) => {
           return (
             <Form className="maketransaction-form">
               <div className="maketransaction-form__fieldcont">
@@ -55,6 +56,17 @@ const CreateTransaction = () => {
                     <option value="egress">Egress</option>
                   </Field>
                   {errorHandler(errors).type()}
+                </div>
+              </div>
+              <div className="maketransaction-form__fieldcont">
+                <label>Date Transaction</label>
+                <div>
+                  <DataPickerComp
+                    name="date"
+                    onChange={setFieldValue}
+                    value={values.date}
+                  />
+                  {errorHandler(errors).date()}
                 </div>
               </div>
               <div className="maketransaction-form__fieldcont">

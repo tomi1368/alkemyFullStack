@@ -2,6 +2,7 @@ import { useEffect,useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {Formik,Form,Field} from "formik"
+import DataPickerComp from '../CreateTransaction/DataPicker/DataPicker'
 import { changeTransaction, removeTransaction } from './changeTransactionsConfig/changeTransactionsRequest'
 import { initialValue,SchemaValidation,errorHandler } from './changeTransactionsConfig/changeTransactionsConfig'
 const ChangeTransactions = () => {
@@ -26,7 +27,7 @@ const ChangeTransactions = () => {
             validationSchema={SchemaValidation}
             onSubmit={(v)=>changeTransaction(dispatch,v,selectedTransaction._id,user.token,selectedTransaction.amount,navigate)}
           >
-            {({ errors }) => {
+            {({ errors,values,setFieldValue }) => {
               return (
                 <Form className="maketransaction-form">
                   <div className="maketransaction-form__fieldcont">
@@ -49,6 +50,16 @@ const ChangeTransactions = () => {
                         type="number"
                       />
                       {errorHandler(errors).amount()}
+                    </div>
+                  </div>
+                  <div className="maketransaction-form__fieldcont">
+                    <label>Date Transaction</label>
+                    <div>
+                      <DataPickerComp
+                      onChange={setFieldValue}
+                      name="date"
+                      value={values.date}
+                      />
                     </div>
                   </div>
                   <div className="maketransaction-form__fieldcont">

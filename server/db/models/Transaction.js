@@ -19,6 +19,10 @@ const TransactionSchema = new Schema({
     },
     category:{
         type:String
+    },
+    date:{
+        type:String,
+        required:true
     }
 },{timestamps:true,versionKey:false})
 

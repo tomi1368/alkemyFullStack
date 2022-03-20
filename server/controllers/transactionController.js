@@ -3,14 +3,15 @@ import Wallet from "../db/models/Wallet.js"
 import errorResponse from "../helpers/errorResponse.js"
 
 export const createTransaction = async (req,res)=>{
-    const {concept,amount,type,category} = req.body
+    const {concept,amount,type,category,date} = req.body
     const {wallet} = req.user
     console.log(req.body)
     const newTransaction = new Transaction({
         concept,
         amount,
         type,
-        category
+        category,
+        date
     })
     try{
         let createdTransaction = await newTransaction.save()
@@ -45,14 +46,15 @@ export const deleteTransaction = async (req,res)=>{
 
 
 export const modifyTransaction = async (req,res)=>{
-    const {concept,amount,category,oldAmount} = req.body.value
+    const {concept,amount,category,oldAmount,date} = req.body.value
     const {wallet} = req.user
     const id = req.body.id
     try{
         const foundedTransaction = await Transaction.findByIdAndUpdate(id,{
             concept,
             amount,
-            category
+            category,
+            date
         },{new:true})
         if(!foundedTransaction) return errorResponse("Transaction not found",404,res)
         const updatedWallet = await Wallet.findByIdAndUpdate(wallet._id,{
