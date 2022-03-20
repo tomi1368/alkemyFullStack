@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { initialValue, Schema, errorHandler } from "./registerHelper/registerConfig";
 import { Formik, Form, Field } from "formik";
 import { registerRequest } from './registerHelper/registerRequest';
@@ -6,6 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import "./Register.scss"
 const Register = () => {
   const navigate = useNavigate()
+  const [error,setError] = useState(null)
   return (
     <div className='background-register'>
       <div className='register-wrapper'>
@@ -14,7 +15,7 @@ const Register = () => {
           <Formik
           initialValues={initialValue}
           validationSchema={Schema}
-          onSubmit={(v)=>registerRequest(navigate,v)}
+          onSubmit={(v)=>registerRequest(navigate,v,setError)}
           >
             {({errors})=>{
               return(
@@ -30,7 +31,8 @@ const Register = () => {
               )
             }}  
             
-          </Formik>          
+          </Formik>
+        {error && <div>{error.msg}</div>}          
         <div className='register-tologin'>
                 <h4>Have you an account?</h4>
                 <Link to="/login" className='register-tologin__btn' > Sign-in with your account</Link>
