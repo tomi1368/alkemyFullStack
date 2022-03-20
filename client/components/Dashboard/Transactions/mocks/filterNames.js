@@ -1,0 +1,1 @@
+export const filters = ["All","Charity","Food","Services","Tech"]
