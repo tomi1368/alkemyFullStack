@@ -11,6 +11,7 @@ const ChangeTransactions = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [selectedTransaction,setSelectedTransaction] = useState(null)
+  const [error,setError] = useState(null)
   useEffect(()=>{
     const foundedTransaction = user.user.wallet.transactions.find(el=> el._id == params.id)
     setSelectedTransaction(foundedTransaction)
@@ -25,7 +26,7 @@ const ChangeTransactions = () => {
           <Formik
             initialValues={initialValue(selectedTransaction)}
             validationSchema={SchemaValidation}
-            onSubmit={(v)=>changeTransaction(dispatch,v,selectedTransaction._id,user.token,selectedTransaction.amount,navigate)}
+            onSubmit={(v)=>changeTransaction(dispatch,v,selectedTransaction._id,user.token,selectedTransaction.amount,navigate,setError)}
           >
             {({ errors,values,setFieldValue }) => {
               return (
@@ -80,12 +81,13 @@ const ChangeTransactions = () => {
                   </div>
                   <div className='maketransaction-form__btns'>
                   <button type="submit">Edit Transaction</button>
-                  <button onClick={()=>removeTransaction(dispatch,navigate,selectedTransaction._id,user.token)} className='maketransaction-form__btns__delete'>🗑️</button>
+                  <button onClick={()=>removeTransaction(dispatch,navigate,selectedTransaction._id,user.token,setError)} className='maketransaction-form__btns__delete'>🗑️</button>
                   </div>
                 </Form>
               );
             }}
           </Formik>
+            {error && <div className='error'>{error.msg}</div>}
         </div>
         </div>
         )

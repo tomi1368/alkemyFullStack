@@ -8,8 +8,8 @@ export const fetchUser = createAsyncThunk(
         try{
            const response = await axios.post("http://localhost:4500/api/user/login",dispatch)
            return response.data
-        }catch(err){
-            return ApiThunk.rejectWithValue()
+        }catch(error){
+            return ApiThunk.rejectWithValue(error.response.data.message)
         }
             
     }
@@ -33,7 +33,7 @@ export const createTransaction = createAsyncThunk(
                 console.log(response.data)
             return response.data
         } catch (error) {
-            return ApiThunk.rejectWithValue()
+            return ApiThunk.rejectWithValue(error.message)
         }
     }
 )
@@ -55,7 +55,7 @@ export const editTransaction = createAsyncThunk(
                 )
             return response.data
         } catch (error) {
-            return ApiThunk.rejectWithValue()
+            return ApiThunk.rejectWithValue(error.message)
         }
     }
 )
@@ -78,7 +78,7 @@ export const deleteTransaction = createAsyncThunk(
                 )
             return response.data
         } catch (error) {
-            return ApiThunk.rejectWithValue()
+            return ApiThunk.rejectWithValue(error.message)
         }
     }
 )

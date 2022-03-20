@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import {
   initialValue,
@@ -12,12 +12,13 @@ import DataPickerComp from "./DataPicker/DataPicker";
 const CreateTransaction = () => {
   const dispatch = useDispatch()
   const user = useSelector(state=> state.currentUser)
+  const [error,setError] = useState(null)
   return (
     <div className="maketransaction">
       <Formik
         initialValues={initialValue}
         validationSchema={SchemaValidation}
-        onSubmit={(v)=>createTransactionRequest(dispatch,v,user)}
+        onSubmit={(v)=>createTransactionRequest(dispatch,v,user,setError)}
       >
         {({ errors,setFieldValue,values }) => {
           return (
@@ -90,6 +91,7 @@ const CreateTransaction = () => {
           );
         }}
       </Formik>
+      {error && <div className="error">{error.msg}</div>}
     </div>
   );
 };

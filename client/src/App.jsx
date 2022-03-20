@@ -27,6 +27,7 @@ function App() {
         <Route path="transactions" element={<Transactions/>} />
         <Route path="/dashboard/:id" element={<ChangeTransactions/>}/>
       </Route>
+      <Route path="*" element={<h2>Error 404 Route not found</h2>} ></Route>
     </Routes>
   )
 }
