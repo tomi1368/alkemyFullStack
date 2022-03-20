@@ -1,7 +1,7 @@
 import { editTransaction,deleteTransaction } from "../../../../redux/reducers/userSlice"
 import { errorHelper } from "../../../helper/errorhelper"
 export const removeTransaction = (dispatch,navigate,id,token,setError)=>{
- console.log({id,token})
+ 
   dispatch(deleteTransaction({id,token}))
  .unwrap()
  .then(res=> navigate("/dashboard"))

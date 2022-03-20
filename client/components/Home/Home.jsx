@@ -14,4 +14,3 @@ const Home = () => {
 };
 
 export default Home;
-//https://32173j2csrp24depwt3pfa37-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/savings_piggy_bank.svg  

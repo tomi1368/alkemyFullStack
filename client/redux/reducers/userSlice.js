@@ -30,7 +30,6 @@ export const createTransaction = createAsyncThunk(
                     }
                   }              
                 )
-                console.log(response.data)
             return response.data
         } catch (error) {
             return ApiThunk.rejectWithValue(error.message)
@@ -41,7 +40,6 @@ export const createTransaction = createAsyncThunk(
 export const editTransaction = createAsyncThunk(
     "user/editTransaction",
     async(dispatch,ApiThunk)=>{
-        console.log(dispatch.id,dispatch.value)
         try {
             const response = await axios(
                 {
