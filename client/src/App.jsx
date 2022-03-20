@@ -8,13 +8,20 @@ import Transactions from "../components/Dashboard/Transactions/Transactions"
 import "./App.scss"
 import CreateTransaction from "../components/Dashboard/CreateTransaction/CreateTransaction"
 import ChangeTransactions from "../components/Dashboard/ChangeTransactions/ChangeTransactions"
+import {useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
 function App() {
+  const user = useSelector(state=>state.currentUser)
   return (
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
-      <Route  path="dashboard" element={<Dashboard/>}> 
+      <Route path="/login" element={
+      user ? (<Navigate replace to="/dashboard"></Navigate>) : <Login/>
+      }/>
+      <Route path="/register" element={
+        user ? (<Navigate replace to="/dashboard"></Navigate>) : <Register/>
+      }/>
+      <Route  path="dashboard" element={!user ? (<Navigate replace to="/"></Navigate>) : <Dashboard/>}> 
         <Route path="" element={<Resume></Resume>}></Route>
         <Route path="newTransaction" element={<CreateTransaction/>}></Route>
         <Route path="transactions" element={<Transactions/>} />

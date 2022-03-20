@@ -1,8 +1,12 @@
 import React from "react";
 import "./Resume.scss"
-import {useSelector} from "react-redux"
+import {useSelector,useDispatch} from "react-redux"
+import { useNavigate } from 'react-router-dom'
 import Transaction from "./Transaction/Transaction";
+import { logout } from "./helpers/logout";
 const Resume = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const transactions = useSelector(state=>state.currentUser.user)
   const firstTen = [...transactions.wallet.transactions].sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)).slice(0,10)
   return (
@@ -25,6 +29,7 @@ const Resume = () => {
           <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" alt="" />
         </div>
         <h3 className="profile-title">{transactions.username}</h3>
+        <button onClick={()=>logout(dispatch,navigate)} className="profile-logout">Logout</button>
       </div>
     </div>
   );

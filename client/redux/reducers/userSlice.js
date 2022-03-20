@@ -60,6 +60,8 @@ export const editTransaction = createAsyncThunk(
     }
 )
 
+
+
 export const deleteTransaction = createAsyncThunk(
     "user/deleteTransaction",
     async(dispatch,ApiThunk)=>{
@@ -90,6 +92,11 @@ const initialValue = {
 const userSlide = createSlice({
     name:"user",
     initialState:initialValue,
+    reducers:{
+        logoutUser:(state)=>{
+            state.currentUser=null
+        }
+    },
     extraReducers:{
         [fetchUser.pending] : (state)=>{
             state.isFetching = true
@@ -126,10 +133,10 @@ const userSlide = createSlice({
             state.error = false
             state.currentUser.user.wallet.transactions = state.currentUser.user.wallet.transactions.map(el=> el._id == action.payload.transaction._id ? action.payload.transaction : el )
             state.currentUser.user.wallet.balance = action.payload.wallet.balance
-        }   
+        }
     }
 })
 
 
-
+export const {logoutUser} = userSlide.actions
 export default userSlide.reducer
