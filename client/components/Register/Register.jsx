@@ -32,7 +32,7 @@ const Register = () => {
             }}  
             
           </Formik>
-        {error && <div>{error.msg}</div>}          
+        {error && <div className='error'>{error.msg}</div>}          
         <div className='register-tologin'>
                 <h4>Have you an account?</h4>
                 <Link to="/login" className='register-tologin__btn' > Sign-in with your account</Link>
