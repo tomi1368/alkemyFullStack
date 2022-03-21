@@ -1,35 +1,49 @@
-import {Routes,Route} from "react-router-dom"
-import Dashboard from "../components/Dashboard/Dashboard"
-import Resume from "../components/Dashboard/Resume/Resume"
-import Home from "../components/Home/Home"
-import Login from "../components/Login/Login"
-import Register from "../components/Register/Register"
-import Transactions from "../components/Dashboard/Transactions/Transactions"
-import "./App.scss"
-import CreateTransaction from "../components/Dashboard/CreateTransaction/CreateTransaction"
-import ChangeTransactions from "../components/Dashboard/ChangeTransactions/ChangeTransactions"
-import {useSelector} from "react-redux"
-import {Navigate} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "../components/Dashboard/Dashboard";
+import Resume from "../components/Dashboard/Resume/Resume";
+import Home from "../components/Home/Home";
+import Login from "../components/Login/Login";
+import Register from "../components/Register/Register";
+import Transactions from "../components/Dashboard/Transactions/Transactions";
+import "./App.scss";
+import CreateTransaction from "../components/Dashboard/CreateTransaction/CreateTransaction";
+import ChangeTransactions from "../components/Dashboard/ChangeTransactions/ChangeTransactions";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 function App() {
-  const user = useSelector(state=>state.currentUser)
+  const user = useSelector((state) => state.currentUser);
   return (
     <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/login" element={
-      user ? (<Navigate replace to="/dashboard"></Navigate>) : <Login/>
-      }/>
-      <Route path="/register" element={
-        user ? (<Navigate replace to="/dashboard"></Navigate>) : <Register/>
-      }/>
-      <Route  path="dashboard" element={!user ? (<Navigate replace to="/"></Navigate>) : <Dashboard/>}> 
+      <Route
+        path="/"
+        element={
+          user ? <Navigate replace to="/dashboard"></Navigate> : <Home />
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          user ? <Navigate replace to="/dashboard"></Navigate> : <Login />
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          user ? <Navigate replace to="/dashboard"></Navigate> : <Register />
+        }
+      />
+      <Route
+        path="dashboard"
+        element={!user ? <Navigate replace to="/"></Navigate> : <Dashboard />}
+      >
         <Route path="" element={<Resume></Resume>}></Route>
-        <Route path="newTransaction" element={<CreateTransaction/>}></Route>
-        <Route path="transactions" element={<Transactions/>} />
-        <Route path="/dashboard/:id" element={<ChangeTransactions/>}/>
+        <Route path="newTransaction" element={<CreateTransaction />}></Route>
+        <Route path="transactions" element={<Transactions />} />
+        <Route path="/dashboard/:id" element={<ChangeTransactions />} />
       </Route>
-      <Route path="*" element={<h2>Error 404 Route not found</h2>} ></Route>
+      <Route path="*" element={<h2>Error 404 Route not found</h2>}></Route>
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

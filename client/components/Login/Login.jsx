@@ -3,7 +3,7 @@ import { initialValue, Schema, errorHandler } from "./loginHelper/loginConfig";
 import { Formik, Form, Field } from "formik";
 import "./Login.scss";
 import { validationForm } from "./loginHelper/loginRequest";
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Link} from "react-router-dom"
 import { useDispatch} from "react-redux";
 
 
@@ -43,6 +43,10 @@ const Login = () => {
           }}
         </Formik>
         {error && <div className="error">{error.msg}</div>}
+        <div className='login-toregister'>
+                <h4>Don´t have an account?</h4>
+                <Link to="/register" className='register-tologin__btn' > Register here</Link>
+        </div>
       </div>
       <div className="login-img">
         <img src="https://png.pngtree.com/thumb_back/fh260/background/20201215/pngtree-purple-simple-alarm-clock-with-gold-coins-background-image_508829.jpg" alt="" />
