@@ -22,13 +22,13 @@ const SchemaValidation = Yup.object().shape({
 const errorHandler = (errors) => {
   return {
     concept: () => {
-      return errors.concept && <div>{errors.message}</div>;
+      return errors.concept && <div>{errors.concept}</div>;
     },
     amount: () => {
-      return errors.amount && <div>{errors.message}</div>;
+      return errors.amount && <div>{errors.amount}</div>;
     },
     date:()=>{
-      return errors.date && <div>{errors.message}</div>;
+      return errors.date && <div>{errors.date}</div>;
     }
   };
 };
