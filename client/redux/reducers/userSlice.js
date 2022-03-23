@@ -6,7 +6,7 @@ export const fetchUser = createAsyncThunk(
     "user/getUser",
     async (dispatch,ApiThunk)=>{
         try{
-           const response = await axios.post("http://localhost:4500/api/user/login",dispatch)
+           const response = await axios.post("https://alkemy-dashboard.herokuapp.com/api/user/login",dispatch)
            return response.data
         }catch(error){
             return ApiThunk.rejectWithValue(error.response.data.message)
@@ -23,7 +23,7 @@ export const createTransaction = createAsyncThunk(
             const response = await axios(
                 {
                     method:"POST",
-                    url:"http://localhost:4500/api/transaction/",
+                    url:"https://alkemy-dashboard.herokuapp.com/api/transaction/",
                     data:dispatch.value,
                     headers:{
                       Authorization: `Bearer ${dispatch.token || " "}`
@@ -44,7 +44,7 @@ export const editTransaction = createAsyncThunk(
             const response = await axios(
                 {
                     method:"PUT",
-                    url:"http://localhost:4500/api/transaction/",
+                    url:"https://alkemy-dashboard.herokuapp.com/api/transaction/",
                     data:{id:dispatch.id,value:dispatch.value},
                     headers:{
                       Authorization: `Bearer ${dispatch.token || " "}`
@@ -67,7 +67,7 @@ export const deleteTransaction = createAsyncThunk(
             const response = await axios(
                 {
                     method:"DELETE",
-                    url:"http://localhost:4500/api/transaction/",
+                    url:"https://alkemy-dashboard.herokuapp.com/transaction/",
                     data:{id:dispatch.id},
                     headers:{
                       Authorization: `Bearer ${dispatch.token || ""}`
